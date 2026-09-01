@@ -15,7 +15,6 @@ export default function Home() {
 
       {/* ===== HERO ===== */}
       <section className="pt-8 pb-4 px-4 bg-gradient-to-b from-gray-950 to-gray-900 relative overflow-hidden">
-        {/* Background gradient glow */}
         <div className="absolute top-[-200px] right-[-200px] w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-[-200px] left-[-200px] w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-3xl"></div>
 
@@ -58,7 +57,6 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Trust badge */}
             <p className="text-xs text-gray-500 mt-6 animate-fade-in-up animate-delay-5">
               🔒 No credit card required · Results in 48 hours
             </p>
@@ -100,7 +98,7 @@ export default function Home() {
 }
 
 // ============================================================
-//  WHY SECTION (Pauses on Hover/Touch)
+//  WHY SECTION (No pause text)
 // ============================================================
 function WhySection() {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -139,11 +137,8 @@ function WhySection() {
         intervalRef.current = null;
       }
     }
-
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [isPaused, slides.length]);
 
@@ -151,17 +146,13 @@ function WhySection() {
   const handleMouseLeave = () => setIsPaused(false);
   const handleTouchStart = () => setIsPaused(true);
   const handleTouchEnd = () => {
-    setTimeout(() => {
-      setIsPaused(false);
-    }, 5000);
+    setTimeout(() => setIsPaused(false), 5000);
   };
 
   const goToSlide = (index: number) => {
     setSlideIndex(index);
     setIsPaused(true);
-    setTimeout(() => {
-      setIsPaused(false);
-    }, 5000);
+    setTimeout(() => setIsPaused(false), 5000);
   };
 
   return (
@@ -217,7 +208,6 @@ function WhySection() {
                 slideIndex === index ? "bg-orange-500 w-6" : "bg-gray-600 hover:bg-gray-400"
               }`}
               onClick={() => goToSlide(index)}
-              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
@@ -231,12 +221,6 @@ function WhySection() {
             <span className="absolute inset-0 rounded-xl bg-orange-500/20 blur-xl group-hover:blur-2xl transition -z-10"></span>
           </Link>
         </div>
-
-        {isPaused && (
-          <div className="text-center mt-3 text-xs text-gray-500">
-            ⏸️ Paused — tap or click to resume
-          </div>
-        )}
 
       </div>
     </section>
@@ -279,7 +263,6 @@ function UpgradeSection() {
             Three levels of service — from quick fixes to a complete revenue engine.
           </p>
         </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {levels.map((level, index) => (
             <div
@@ -288,9 +271,7 @@ function UpgradeSection() {
             >
               <div className="text-3xl md:text-4xl mb-2 group-hover:scale-110 transition">{level.icon}</div>
               <h3 className="text-base md:text-lg font-bold text-white mb-1.5">{level.title}</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                {level.description}
-              </p>
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">{level.description}</p>
             </div>
           ))}
         </div>
@@ -300,41 +281,41 @@ function UpgradeSection() {
 }
 
 // ============================================================
-//  RESULTS & TESTIMONIALS (With Photos)
+//  TESTIMONIALS (with avatars)
 // ============================================================
 function ResultsTestimonials() {
   const items = [
     {
-      icon: "💰",
       stat: "£2.4M+",
       label: "Revenue Recovered",
       quote: "They didn't just patch the leak — they gave us a system that actually works.",
       name: "James Hartley",
       role: "CEO",
       company: "SaaS Co. (US)",
-      image: "👤",
+      initials: "JH",
+      bgColor: "bg-blue-500",
       rating: 5,
     },
     {
-      icon: "📈",
       stat: "200+",
       label: "Leads Saved",
       quote: "They literally saved our business from going under.",
       name: "Sarah Bennett",
       role: "Founder",
       company: "UK Store",
-      image: "👤",
+      initials: "SB",
+      bgColor: "bg-purple-500",
       rating: 5,
     },
     {
-      icon: "⚡",
       stat: "40%",
       label: "Average Conversion Lift",
       quote: "In less than 30 days, our conversion rate jumped by 40%.",
       name: "Mark Reynolds",
       role: "Head of Growth",
       company: "UK SaaS",
-      image: "👤",
+      initials: "MR",
+      bgColor: "bg-green-500",
       rating: 5,
     },
   ];
@@ -342,7 +323,6 @@ function ResultsTestimonials() {
   return (
     <section className="py-10 md:py-16 px-4 md:px-8 bg-white">
       <div className="max-w-5xl mx-auto">
-
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 tracking-tight">
             Real Results, Real Voices
@@ -358,16 +338,14 @@ function ResultsTestimonials() {
               key={index}
               className="bg-gray-50 rounded-2xl p-5 md:p-8 border border-gray-200 shadow-sm hover:shadow-lg transition duration-300 text-center"
             >
-              <div className="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center text-3xl mb-3">
-                {item.image}
+              <div className={`w-16 h-16 mx-auto ${item.bgColor} rounded-full flex items-center justify-center text-white font-bold text-xl mb-3`}>
+                {item.initials}
               </div>
-              
               <div className="flex justify-center gap-0.5 mb-2">
                 {[...Array(item.rating)].map((_, i) => (
                   <span key={i} className="text-yellow-400 text-sm">⭐</span>
                 ))}
               </div>
-
               <div className="text-3xl md:text-4xl lg:text-5xl font-black text-orange-500 tracking-tight leading-none mb-1">
                 {item.stat}
               </div>
@@ -397,7 +375,6 @@ function ResultsTestimonials() {
             <span className="absolute inset-0 rounded-xl bg-orange-500/20 blur-xl group-hover:blur-2xl transition -z-10"></span>
           </Link>
         </div>
-
       </div>
     </section>
   );
