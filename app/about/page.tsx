@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AboutPage() {
-  // ===== 6 Revenue Leaks =====
   const problems = [
     {
       icon: "📊",
@@ -43,7 +43,6 @@ export default function AboutPage() {
     },
   ];
 
-  // ===== 15 Professional FAQs =====
   const faqs = [
     {
       question: "Why should I trust you with my revenue?",
@@ -122,7 +121,6 @@ export default function AboutPage() {
     },
   ];
 
-  // ===== Accordion state =====
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -130,141 +128,104 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-950 text-white font-sans antialiased">
+    <main className="min-h-screen">
 
-      {/* ===== NAVBAR ===== */}
-      <nav className="py-4 px-4 bg-gray-950/90 border-b border-gray-800/50 sticky top-0 z-50 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-1">
-            <span className="text-xl md:text-2xl font-extrabold text-orange-500 tracking-tight">RevOps</span>
-            <span className="text-xl md:text-2xl font-extrabold text-white tracking-tight">Mechanic</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-sm text-gray-300 hover:text-white transition font-medium">Home</a>
-            <a href="/about" className="text-sm text-orange-400 hover:text-orange-300 transition font-medium">About</a>
-            <a href="#contact" className="text-sm text-gray-300 hover:text-white transition font-medium">Contact</a>
-            <a
-              href="#audit"
-              className="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 rounded-lg font-semibold text-sm transition shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-[1.02] active:scale-[0.98] duration-200"
-            >
-              Free Audit
-            </a>
-          </div>
-          <div className="md:hidden">
-            <button className="text-gray-400 hover:text-white">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+      {/* ===== HERO ===== */}
+      <section className="py-16 px-4 text-center bg-gradient-to-b from-gray-950 to-gray-900">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
+            About <span className="text-orange-500">RevOps Mechanic</span>
+          </h1>
+          <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
+            We fix the 6 revenue leaks that are silently draining your profits — one by one.
+          </p>
+        </div>
+      </section>
+
+      {/* ===== 6 REVENUE LEAKS ===== */}
+      <section className="py-12 px-4 md:px-8 bg-gray-950">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
+            The 6 Revenue Leaks We Fix
+          </h2>
+          <div className="space-y-6">
+            {problems.map((item, index) => (
+              <div
+                key={index}
+                className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/60 hover:border-orange-500/30 transition duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="text-3xl flex-shrink-0 mt-1">{item.icon}</div>
+                  <div>
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </nav>
+      </section>
 
-      {/* ===== PAGE CONTENT ===== */}
-      <div>
+      {/* ===== FAQ SECTION ===== */}
+      <section className="py-12 px-4 md:px-8 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-center text-gray-600 mb-10">
+            Everything you need to know before you start.
+          </p>
 
-        {/* ===== HERO (Dark) ===== */}
-        <section className="py-16 px-4 text-center bg-gradient-to-b from-gray-950 to-gray-900">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
-              About <span className="text-orange-500">RevOps Mechanic</span>
-            </h1>
-            <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
-              We fix the 6 revenue leaks that are silently draining your profits — one by one.
-            </p>
-          </div>
-        </section>
-
-        {/* ===== 6 REVENUE LEAKS (Dark Background) ===== */}
-        <section className="py-12 px-4 bg-gray-950">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-white text-center mb-8">
-              The 6 Revenue Leaks We Fix
-            </h2>
-            <div className="space-y-6">
-              {problems.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/60 hover:border-orange-500/30 transition duration-300"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="text-3xl flex-shrink-0 mt-1">{item.icon}</div>
-                    <div>
-                      <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm md:text-base text-gray-300 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ===== FAQ SECTION (White Background) ===== */}
-        <section className="py-12 px-4 bg-white">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-center text-gray-600 mb-10">
-              Everything you need to know before you start.
-            </p>
-
-            <div className="space-y-3">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-50 rounded-lg border border-gray-200 shadow-sm overflow-hidden transition hover:shadow-md"
-                >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-100 transition duration-200"
-                  >
-                    <span className="text-sm md:text-base font-medium text-gray-800">
-                      {faq.question}
-                    </span>
-                    <span className="text-gray-400 text-xl flex-shrink-0 ml-4">
-                      {activeIndex === index ? "−" : "+"}
-                    </span>
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      activeIndex === index ? "max-h-96" : "max-h-0"
-                    }`}
-                  >
-                    <div className="px-6 pb-4 text-sm md:text-base text-gray-600 leading-relaxed border-t border-gray-200 pt-3">
-                      {faq.answer}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* ===== CTA at bottom ===== */}
-            <div className="mt-10 text-center">
-              <p className="text-gray-600 text-sm mb-4">
-                Still have questions? Let's talk.
-              </p>
-              <a
-                href="#audit"
-                className="inline-block px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-[1.02] active:scale-[0.98] duration-200"
+          <div className="space-y-3">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 rounded-lg border border-gray-200 shadow-sm overflow-hidden transition hover:shadow-md"
               >
-                Get Your Free Audit
-              </a>
-            </div>
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex items-center justify-between px-4 md:px-6 py-4 text-left hover:bg-gray-100 transition duration-200"
+                >
+                  <span className="text-sm md:text-base font-medium text-gray-800 pr-4">
+                    {faq.question}
+                  </span>
+                  <span className="text-gray-400 text-xl flex-shrink-0">
+                    {activeIndex === index ? "−" : "+"}
+                  </span>
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    activeIndex === index ? "max-h-[500px]" : "max-h-0"
+                  }`}
+                >
+                  <div className="px-4 md:px-6 pb-4 text-sm md:text-base text-gray-600 leading-relaxed border-t border-gray-200 pt-3">
+                    {faq.answer}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </section>
 
-        {/* ===== FOOTER ===== */}
-        <footer className="py-6 px-4 border-t border-gray-800 text-center text-sm text-gray-400 bg-gray-950">
-          &copy; 2026 RevOps Mechanic. All rights reserved.
-        </footer>
+          {/* CTA */}
+          <div className="mt-10 text-center">
+            <p className="text-gray-600 text-sm mb-4">
+              Still have questions? Let's talk.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-[1.02] active:scale-[0.98] duration-200"
+            >
+              Get Your Free Audit
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      </div>
     </main>
   );
 }

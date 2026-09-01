@@ -11,48 +11,21 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-950 text-white font-sans antialiased">
+    <main className="min-h-screen">
 
-      {/* ===== HERO WITH NAVBAR ===== */}
-      <section className="min-h-screen pt-4 px-4 bg-gradient-to-b from-gray-950 to-gray-900">
+      {/* ===== HERO ===== */}
+      <section className="min-h-screen pt-8 px-4 bg-gradient-to-b from-gray-950 to-gray-900">
         <div className="max-w-6xl mx-auto">
-
-          {/* ===== NAVBAR ===== */}
-          <nav className="flex items-center justify-between py-4 border-b border-gray-800/50">
-            <div className="flex items-center gap-1">
-              <span className="text-xl md:text-2xl font-extrabold text-orange-500 tracking-tight">RevOps</span>
-              <span className="text-xl md:text-2xl font-extrabold text-white tracking-tight">Mechanic</span>
-            </div>
-            <div className="flex items-center gap-8">
-              <Link href="/" className="text-sm text-orange-400 hover:text-orange-300 transition font-medium">Home</Link>
-              <Link href="/about" className="text-sm text-gray-300 hover:text-white transition font-medium">About</Link>
-              <Link href="/contact" className="text-sm text-gray-300 hover:text-white transition font-medium">Contact</Link>
-              <Link
-                href="/contact"
-                className="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 rounded-lg font-semibold text-sm transition shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-[1.02] active:scale-[0.98] duration-200"
-              >
-                Free Audit
-              </Link>
-            </div>
-            <div className="md:hidden">
-              <button className="text-gray-400 hover:text-white">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
-          </nav>
-
-          {/* ===== HERO CONTENT ===== */}
-          <div className="max-w-3xl mx-auto text-center pt-16 md:pt-20">
+          <div className="max-w-3xl mx-auto text-center pt-8 md:pt-16">
 
             <span className="inline-block bg-orange-500/10 text-orange-400 px-4 py-1.5 rounded-full text-[10px] md:text-xs font-semibold tracking-wider uppercase mb-6 border border-orange-500/20">
               🔧 Revenue Recovery Specialists
             </span>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.2] tracking-tight mb-4">
               Your Website Is Losing You
-              <span className="text-orange-500"> Money Every Day</span>
+              <br />
+              <span className="text-orange-500">Money Every Day</span>
             </h1>
 
             <p className="text-base md:text-lg text-gray-300 font-medium leading-relaxed mb-6">
@@ -95,14 +68,12 @@ export default function Home() {
       {/* ===== RESULTS & TESTIMONIALS ===== */}
       <ResultsTestimonials />
 
-      {/* ===== NO FOOTER HERE — IT'S IN LAYOUT.TSX ===== */}
-
     </main>
   );
 }
 
 // ============================================================
-//  WHY SECTION – PAGE TURN
+//  WHY SECTION
 // ============================================================
 function WhySection() {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -110,11 +81,11 @@ function WhySection() {
   const slides = [
     {
       title: "Who We Are",
-      text: "We are not a typical agency. We are mechanics — we dig deep into the engine of your revenue operations, find every crack, every leak, every broken part, and fix what's broken. We don't just look at the surface. We go underneath, into the systems that drive your business, and we rebuild them from the ground up.\n\nEvery website has leaks. Some are obvious — slow load times, broken forms, clunky mobile experiences. Others are hidden — missed follow-ups, abandoned carts, leads that fall through the cracks. Most agencies just apply band-aids. They give you a quick fix, collect their fee, and move on. But band-aids don't last. The leak comes back. The revenue stops flowing again.\n\nWe do things differently. We rebuild the entire system so revenue flows — consistently, predictably, and at scale. We don't stop until your website performs like a well-oiled machine. Every part works together. Every visitor has a clear path. Every lead gets captured. Every customer feels valued.",
+      text: "We are not a typical agency. We are mechanics — we dig deep into the engine of your revenue operations, find every crack, every leak, every broken part, and fix what's broken. We don't just look at the surface. We go underneath, into the systems that drive your business, and we rebuild them from the ground up. Every website has leaks. Some are obvious — slow load times, broken forms, clunky mobile experiences. Others are hidden — missed follow-ups, abandoned carts, leads that fall through the cracks. Most agencies just apply band-aids. They give you a quick fix, collect their fee, and move on. But band-aids don't last. The leak comes back. The revenue stops flowing again. We do things differently. We rebuild the entire system so revenue flows — consistently, predictably, and at scale. We don't stop until your website performs like a well-oiled machine. Every part works together. Every visitor has a clear path. Every lead gets captured. Every customer feels valued.",
     },
     {
       title: "Why Choose Us",
-      text: "We don't charge by the hour. We charge by the result. You pay us when we recover revenue — not before. That's how confident we are in our work. If we don't find leaks and fix them, you don't pay. It's that simple.\n\nWith clients across 3 continents, we've seen every leak, every bug, every broken funnel. We've worked with e-commerce stores, service businesses, SaaS platforms, and agencies. We've seen it all — and we know exactly where to look. We can spot a leak in minutes that others miss for months.\n\nOur name isn't just clever branding. It's our promise. We are mechanics. We fix what's broken. We don't just talk about results — we deliver them. We're not here to sell you a subscription. We're not here to lock you into a monthly retainer that bleeds your budget dry. We're here to fix your website, hand you the keys, and say — \"You're good. Go grow.\"\n\nThat's who we are. That's what we do. That's why clients trust us.",
+      text: "We don't charge by the hour. We charge by the result. You pay us when we recover revenue — not before. That's how confident we are in our work. If we don't find leaks and fix them, you don't pay. It's that simple. With clients across 3 continents, we've seen every leak, every bug, every broken funnel. We've worked with e-commerce stores, service businesses, SaaS platforms, and agencies. We've seen it all — and we know exactly where to look. We can spot a leak in minutes that others miss for months. Our name isn't just clever branding. It's our promise. We are mechanics. We fix what's broken. We don't just talk about results — we deliver them. We're not here to sell you a subscription. We're not here to lock you into a monthly retainer that bleeds your budget dry. We're here to fix your website, hand you the keys, and say — \"You're good. Go grow.\" That's who we are. That's what we do. That's why clients trust us.",
     },
   ];
 
@@ -126,14 +97,14 @@ function WhySection() {
   }, [slides.length]);
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-gray-900 to-gray-950">
-      <div className="max-w-2xl mx-auto">
+    <section className="py-16 px-4 md:px-8 bg-gradient-to-b from-gray-900 to-gray-950">
+      <div className="max-w-3xl mx-auto">
 
         <div className="text-center mb-8">
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
             Why <span className="text-orange-500">RevOps Mechanic</span>
           </h2>
-          <p className="text-xs md:text-sm text-gray-400 font-medium">
+          <p className="text-sm md:text-base text-gray-400 font-medium">
             Your revenue deserves more than a patch.
           </p>
         </div>
@@ -148,10 +119,10 @@ function WhySection() {
                 key={index}
                 className="min-w-full flex flex-col justify-center items-center text-center px-2"
               >
-                <h3 className="text-xs font-semibold text-orange-400 uppercase tracking-wider mb-3">
+                <h3 className="text-xs font-semibold text-orange-400 uppercase tracking-wider mb-4">
                   {slide.title}
                 </h3>
-                <div className="text-sm text-gray-300 leading-relaxed space-y-3">
+                <div className="text-sm md:text-base text-gray-300 leading-relaxed space-y-3 max-w-2xl">
                   {slide.text.split('\n\n').map((paragraph, i) => (
                     <p key={i}>{paragraph}</p>
                   ))}
@@ -188,7 +159,7 @@ function WhySection() {
 }
 
 // ============================================================
-//  UPGRADE GRID – COMPACT BOXES
+//  UPGRADE GRID
 // ============================================================
 function UpgradeSection() {
   const levels = [
@@ -213,25 +184,26 @@ function UpgradeSection() {
   ];
 
   return (
-    <section className="py-10 px-4 bg-gradient-to-b from-gray-900 to-gray-950">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-6">
-          <h2 className="text-lg md:text-xl font-bold text-white mb-1">
+    <section className="py-16 px-4 md:px-8 bg-gradient-to-b from-gray-900 to-gray-950">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
             Your Path to <span className="text-orange-500">Revenue Recovery</span>
           </h2>
-          <p className="text-[11px] md:text-xs text-gray-400 font-medium">
+          <p className="text-sm md:text-base text-gray-400 font-medium">
             Three levels of service — from quick fixes to a complete revenue engine.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {levels.map((level, index) => (
             <div
               key={index}
-              className="bg-gray-800/60 rounded-lg p-4 border border-gray-700 text-center hover:border-orange-500/50 transition duration-300 hover:shadow-md hover:shadow-orange-500/10"
+              className="bg-gray-800/60 rounded-xl p-6 border border-gray-700/60 hover:border-orange-500/40 transition duration-300 hover:shadow-lg hover:shadow-orange-500/10 text-center"
             >
-              <div className="text-3xl mb-2">{level.icon}</div>
-              <h3 className="text-sm font-bold text-white mb-1.5">{level.title}</h3>
-              <p className="text-[11px] text-gray-300 font-medium leading-relaxed">
+              <div className="text-4xl mb-3">{level.icon}</div>
+              <h3 className="text-lg font-bold text-white mb-2">{level.title}</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
                 {level.description}
               </p>
             </div>
@@ -243,7 +215,7 @@ function UpgradeSection() {
 }
 
 // ============================================================
-//  RESULTS & TESTIMONIALS – BOLD, CLEAR, SCANNABLE
+//  RESULTS & TESTIMONIALS
 // ============================================================
 function ResultsTestimonials() {
   const items = [
@@ -277,7 +249,7 @@ function ResultsTestimonials() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-white">
+    <section className="py-16 px-4 md:px-8 bg-white">
       <div className="max-w-5xl mx-auto">
 
         <div className="text-center mb-12">
@@ -293,19 +265,19 @@ function ResultsTestimonials() {
           {items.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition duration-300 text-center"
+              className="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm hover:shadow-lg transition duration-300 text-center"
             >
               <div className="text-4xl mb-3">{item.icon}</div>
-              <div className="text-4xl md:text-5xl font-black text-orange-500 tracking-tight leading-none mb-1">
+              <div className="text-3xl md:text-4xl lg:text-5xl font-black text-orange-500 tracking-tight leading-none mb-1">
                 {item.stat}
               </div>
-              <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
+              <div className="text-xs md:text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
                 {item.label}
               </div>
-              <blockquote className="text-base text-gray-700 leading-relaxed mb-4 font-medium">
+              <blockquote className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 font-medium">
                 “{item.quote}”
               </blockquote>
-              <div className="text-sm text-gray-500">
+              <div className="text-xs md:text-sm text-gray-500">
                 <span className="font-bold text-gray-800">{item.name}</span>
                 <span className="mx-1">—</span>
                 <span>{item.role}</span>

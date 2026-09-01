@@ -56,55 +56,30 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-950 text-white font-sans antialiased">
+    <main className="min-h-screen bg-white">
 
-      {/* ===== NAVBAR ===== */}
-      <nav className="py-4 px-4 bg-gray-950/90 border-b border-gray-800/50 sticky top-0 z-50 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-1">
-            <span className="text-xl md:text-2xl font-extrabold text-orange-500 tracking-tight">RevOps</span>
-            <span className="text-xl md:text-2xl font-extrabold text-white tracking-tight">Mechanic</span>
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm text-gray-300 hover:text-white transition font-medium">Home</Link>
-            <Link href="/about" className="text-sm text-gray-300 hover:text-white transition font-medium">About</Link>
-            <Link href="/contact" className="text-sm text-orange-400 hover:text-orange-300 transition font-medium">Contact</Link>
-            <Link
-              href="/contact"
-              className="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 rounded-lg font-semibold text-sm transition shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-[1.02] active:scale-[0.98] duration-200"
-            >
-              Free Audit
-            </Link>
-          </div>
-          <div className="md:hidden">
-            <button className="text-gray-400 hover:text-white">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
+      {/* ===== HERO ===== */}
+      <section className="py-12 px-4 text-center bg-gradient-to-b from-gray-50 to-white border-b border-gray-200">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-4xl mb-3">🔧</div>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+            Get Your Free Revenue Audit
+          </h1>
+          <p className="text-sm md:text-base text-gray-600 max-w-xl mx-auto">
+            We'll analyse your website and tell you exactly what's losing you money — no cost, no commitment.
+          </p>
         </div>
-      </nav>
+      </section>
 
-      {/* ===== CONTENT ===== */}
-      <section className="py-16 px-4 bg-white min-h-[80vh]">
+      {/* ===== FORM ===== */}
+      <section className="py-12 px-4 md:px-8 bg-white">
         <div className="max-w-2xl mx-auto">
 
-          <div className="text-center mb-10">
-            <div className="text-4xl mb-3">🔧</div>
-            <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
-              Get Your Free Revenue Audit
-            </h1>
-            <p className="text-sm md:text-base text-gray-600">
-              We'll analyse your website and tell you exactly what's losing you money — no cost, no commitment.
-            </p>
-          </div>
-
           {isSubmitted ? (
-            <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
+            <div className="bg-green-50 border border-green-200 rounded-xl p-6 md:p-8 text-center">
               <div className="text-4xl mb-3">✅</div>
               <h3 className="text-xl font-bold text-green-800 mb-2">Thank You!</h3>
-              <p className="text-green-600">
+              <p className="text-green-600 text-sm md:text-base">
                 We've received your request. We'll analyse your website and get back to you within 48 hours with a detailed report.
               </p>
               <button
@@ -127,7 +102,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900 text-base"
                   placeholder="John Smith"
                 />
               </div>
@@ -143,7 +118,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900 text-base"
                   placeholder="john@example.com"
                 />
               </div>
@@ -159,7 +134,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900 text-base"
                   placeholder="+44 7700 900000"
                 />
               </div>
@@ -175,7 +150,7 @@ export default function ContactPage() {
                   value={formData.website}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900 text-base"
                   placeholder="https://www.yourwebsite.com"
                 />
               </div>
@@ -190,7 +165,7 @@ export default function ContactPage() {
                   value={formData.businessType}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900 text-base"
                 >
                   <option value="">Select your business type</option>
                   <option value="ecommerce">E-commerce / Retail</option>
@@ -213,7 +188,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg transition shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-[1.02] active:scale-[0.98] duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg transition shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-[1.02] active:scale-[0.98] duration-200 disabled:opacity-70 disabled:cursor-not-allowed text-base"
               >
                 {isSubmitting ? "Sending..." : "📩  Send My Free Audit"}
               </button>
