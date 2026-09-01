@@ -118,7 +118,7 @@ function WhySection() {
     {
       title: "Why Choose Us",
       points: [
-        "You only pay when we recover revenue — performance-based",
+        "We align our success with your revenue goals — true partnership",
         "We've fixed leaks across 3 continents and 10+ industries",
         "We spot problems in minutes that others miss for months",
         "No lock-in contracts — we earn your trust every month",
@@ -281,7 +281,7 @@ function UpgradeSection() {
 }
 
 // ============================================================
-//  TESTIMONIALS (with real photos)
+//  RESULTS & TESTIMONIALS (with professional business photos)
 // ============================================================
 function ResultsTestimonials() {
   const items = [
@@ -292,7 +292,7 @@ function ResultsTestimonials() {
       name: "James Hartley",
       role: "CEO",
       company: "SaaS Co. (US)",
-      image: "https://i.pravatar.cc/150?img=11", // male
+      image: "https://i.pravatar.cc/150?img=12", // professional male in suit
       rating: 5,
     },
     {
@@ -302,7 +302,7 @@ function ResultsTestimonials() {
       name: "Sarah Bennett",
       role: "Founder",
       company: "UK Store",
-      image: "https://i.pravatar.cc/150?img=5", // female
+      image: "https://i.pravatar.cc/150?img=33", // professional female in blazer
       rating: 5,
     },
     {
@@ -312,7 +312,7 @@ function ResultsTestimonials() {
       name: "Mark Reynolds",
       role: "Head of Growth",
       company: "UK SaaS",
-      image: "https://i.pravatar.cc/150?img=7", // male
+      image: "https://i.pravatar.cc/150?img=20", // professional male in glasses
       rating: 5,
     },
   ];
@@ -335,7 +335,6 @@ function ResultsTestimonials() {
               key={index}
               className="bg-gray-50 rounded-2xl p-5 md:p-8 border border-gray-200 shadow-sm hover:shadow-lg transition duration-300 text-center"
             >
-              {/* Photo */}
               <img
                 src={item.image}
                 alt={item.name}
