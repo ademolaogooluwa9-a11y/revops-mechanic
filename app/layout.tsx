@@ -22,13 +22,33 @@ export default function RootLayout({
         {/* ===== FOOTER ===== */}
         <Footer />
 
+        {/* ===== STICKY CTA (Mobile Only) ===== */}
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-950/95 backdrop-blur-sm border-t border-orange-500/20 p-3 md:hidden z-40">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex-1">
+              <p className="text-xs text-gray-400 leading-tight">
+                🚀 Free Audit
+              </p>
+              <p className="text-[10px] text-gray-500">
+                No credit card required
+              </p>
+            </div>
+            <Link
+              href="/contact"
+              className="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 rounded-lg font-bold text-sm transition shadow-lg shadow-orange-500/30 flex-shrink-0"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+
       </body>
     </html>
   );
 }
 
 // ============================================================
-//  NAVBAR COMPONENT (Shared Across All Pages)
+//  NAVBAR COMPONENT
 // ============================================================
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -119,7 +139,7 @@ function Navbar() {
 }
 
 // ============================================================
-//  FOOTER COMPONENT (Shared Across All Pages)
+//  FOOTER COMPONENT
 // ============================================================
 function Footer() {
   return (
