@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import "./globals.css";
 
@@ -10,34 +10,63 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
 
+  // Scroll & footer visibility logic
   useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowStickyCTA(true);
-      } else {
-        setShowStickyCTA(false);
+      // Show only if scrolled > 300px AND footer is not visible
+      if (footerRef.current) {
+        const rect = footerRef.current.getBoundingClientRect();
+        const isFooterVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (isFooterVisible) {
+          setShowStickyCTA(false);
+          return;
+        }
       }
+      setShowStickyCTA(window.scrollY > 300);
     };
 
+    // Intersection Observer for footer (more reliable)
+    if (footerRef.current) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setShowStickyCTA(false);
+          } else {
+            // Check scroll position if not intersecting
+            setShowStickyCTA(window.scrollY > 300);
+          }
+        },
+        { threshold: 0.1, rootMargin: "0px 0px 50px 0px" }
+      );
+      observer.observe(footerRef.current);
+    }
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Run once to set initial state
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (observer) observer.disconnect();
+    };
   }, []);
 
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-gray-950 text-white font-sans antialiased">
         
-        {/* NAVBAR */}
         <Navbar />
 
-        {/* PAGE CONTENT */}
         <div className="flex-1">{children}</div>
 
-        {/* FOOTER */}
-        <Footer />
+        {/* Footer with ref */}
+        <Footer ref={footerRef} />
 
-        {/* STICKY CTA (mobile only, appears after scroll) */}
+        {/* Sticky CTA (mobile only, appears on scroll, hides when footer visible) */}
         {showStickyCTA && (
           <div className="fixed bottom-0 left-0 right-0 bg-gray-950/95 backdrop-blur-sm border-t border-orange-500/20 p-3 md:hidden z-40 animate-fade-in-up">
             <div className="flex items-center justify-between gap-3">
@@ -65,7 +94,7 @@ export default function RootLayout({
 }
 
 // ============================================================
-//  NAVBAR
+//  NAVBAR (unchanged)
 // ============================================================
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,14 +106,11 @@ function Navbar() {
   return (
     <nav className="py-4 px-4 bg-gray-950/90 border-b border-gray-800/50 sticky top-0 z-50 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
-        
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-1">
           <span className="text-xl md:text-2xl font-extrabold text-orange-500 tracking-tight">RevOps</span>
           <span className="text-xl md:text-2xl font-extrabold text-white tracking-tight">Mechanic</span>
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           <Link href="/" className="text-sm text-orange-400 hover:text-orange-300 transition font-medium">Home</Link>
           <Link href="/about" className="text-sm text-gray-300 hover:text-white transition font-medium">About</Link>
@@ -97,7 +123,6 @@ function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Hamburger */}
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -148,18 +173,19 @@ function Navbar() {
             </div>
           )}
         </div>
-
       </div>
     </nav>
   );
 }
 
 // ============================================================
-//  FOOTER
+//  FOOTER (with forwardRef)
 // ============================================================
-function Footer() {
+import { forwardRef } from "react";
+
+const Footer = forwardRef<HTMLElement>((props, ref) => {
   return (
-    <footer className="w-full py-6 px-4 border-t border-gray-800 bg-gray-950">
+    <footer ref={ref} className="w-full py-6 px-4 border-t border-gray-800 bg-gray-950">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
 
         <div className="flex flex-col items-center md:items-start gap-3">
@@ -195,8 +221,9 @@ function Footer() {
           <Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link>
           <Link href="/" className="text-gray-400 hover:text-white transition-colors">Home</Link>
         </div>
-
       </div>
     </footer>
   );
-}
+});
+
+Footer.displayName = "Footer";

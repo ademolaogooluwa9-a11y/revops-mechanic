@@ -281,7 +281,7 @@ function UpgradeSection() {
 }
 
 // ============================================================
-//  TESTIMONIALS (with avatars)
+//  TESTIMONIALS (with real photos)
 // ============================================================
 function ResultsTestimonials() {
   const items = [
@@ -292,8 +292,7 @@ function ResultsTestimonials() {
       name: "James Hartley",
       role: "CEO",
       company: "SaaS Co. (US)",
-      initials: "JH",
-      bgColor: "bg-blue-500",
+      image: "https://i.pravatar.cc/150?img=11", // male
       rating: 5,
     },
     {
@@ -303,8 +302,7 @@ function ResultsTestimonials() {
       name: "Sarah Bennett",
       role: "Founder",
       company: "UK Store",
-      initials: "SB",
-      bgColor: "bg-purple-500",
+      image: "https://i.pravatar.cc/150?img=5", // female
       rating: 5,
     },
     {
@@ -314,8 +312,7 @@ function ResultsTestimonials() {
       name: "Mark Reynolds",
       role: "Head of Growth",
       company: "UK SaaS",
-      initials: "MR",
-      bgColor: "bg-green-500",
+      image: "https://i.pravatar.cc/150?img=7", // male
       rating: 5,
     },
   ];
@@ -338,9 +335,13 @@ function ResultsTestimonials() {
               key={index}
               className="bg-gray-50 rounded-2xl p-5 md:p-8 border border-gray-200 shadow-sm hover:shadow-lg transition duration-300 text-center"
             >
-              <div className={`w-16 h-16 mx-auto ${item.bgColor} rounded-full flex items-center justify-center text-white font-bold text-xl mb-3`}>
-                {item.initials}
-              </div>
+              {/* Photo */}
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-16 h-16 rounded-full mx-auto object-cover mb-3 border-2 border-orange-200"
+                loading="lazy"
+              />
               <div className="flex justify-center gap-0.5 mb-2">
                 {[...Array(item.rating)].map((_, i) => (
                   <span key={i} className="text-yellow-400 text-sm">⭐</span>
