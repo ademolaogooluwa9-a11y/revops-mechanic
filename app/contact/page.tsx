@@ -10,12 +10,13 @@ export default function ContactPage() {
     phone: "",
     website: "",
     businessType: "",
+    questions: "", // ← NEW FIELD
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -44,6 +45,7 @@ export default function ContactPage() {
           phone: "",
           website: "",
           businessType: "",
+          questions: "",
         });
       } else {
         setSubmitError("Something went wrong. Please try again.");
@@ -179,6 +181,25 @@ export default function ContactPage() {
                   <option value="nonprofit">Non-Profit / Charity</option>
                   <option value="other">Other (please specify)</option>
                 </select>
+              </div>
+
+              {/* ===== NEW FIELD: Your Questions ===== */}
+              <div>
+                <label htmlFor="questions" className="block text-sm font-medium text-gray-700 mb-1">
+                  Your Questions (optional)
+                </label>
+                <textarea
+                  id="questions"
+                  name="questions"
+                  value={formData.questions}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-900 text-base resize-y"
+                  placeholder="E.g., Do you work with e-commerce stores? How long does the audit take?"
+                />
+                <p className="text-xs text-gray-400 mt-1">
+                  Tell us anything specific you'd like us to know about your website or business.
+                </p>
               </div>
 
               {submitError && (

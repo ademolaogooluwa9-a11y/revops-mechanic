@@ -57,7 +57,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== WHY REVOPS MECHANIC ===== */}
+      {/* ===== WHY REVOPS MECHANIC (With Pause on Interaction) ===== */}
       <section ref={whySectionRef} id="why-section">
         <WhySection />
       </section>
@@ -73,10 +73,12 @@ export default function Home() {
 }
 
 // ============================================================
-//  WHY SECTION (Tighter Spacing)
+//  WHY SECTION (Pauses on Hover/Touch)
 // ============================================================
 function WhySection() {
   const [slideIndex, setSlideIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const slides = [
     {
@@ -89,15 +91,57 @@ function WhySection() {
     },
   ];
 
+  // Auto-slide every 5 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % slides.length);
+    if (!isPaused) {
+      intervalRef.current = setInterval(() => {
+        setSlideIndex((prev) => (prev + 1) % slides.length);
+      }, 5000);
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isPaused, slides.length]);
+
+  // Pause on hover (desktop)
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+
+  // Pause on touch (mobile)
+  const handleTouchStart = () => setIsPaused(true);
+  const handleTouchEnd = () => {
+    // Resume after 5 seconds of no interaction
+    setTimeout(() => {
+      setIsPaused(false);
     }, 5000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
+  };
+
+  // Go to specific slide
+  const goToSlide = (index: number) => {
+    setSlideIndex(index);
+    setIsPaused(true);
+    // Resume after 5 seconds
+    setTimeout(() => {
+      setIsPaused(false);
+    }, 5000);
+  };
 
   return (
-    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-gray-900 to-gray-950">
+    <section
+      className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-gray-900 to-gray-950"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="max-w-3xl mx-auto">
 
         <div className="text-center mb-6">
@@ -137,9 +181,10 @@ function WhySection() {
             <button
               key={index}
               className={`w-2 h-2 rounded-full transition duration-300 ${
-                slideIndex === index ? "bg-orange-500 w-6" : "bg-gray-600"
+                slideIndex === index ? "bg-orange-500 w-6" : "bg-gray-600 hover:bg-gray-400"
               }`}
-              onClick={() => setSlideIndex(index)}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
@@ -153,13 +198,20 @@ function WhySection() {
           </Link>
         </div>
 
+        {/* Pause indicator */}
+        {isPaused && (
+          <div className="text-center mt-3 text-xs text-gray-500">
+            ⏸️ Paused — tap or click to resume
+          </div>
+        )}
+
       </div>
     </section>
   );
 }
 
 // ============================================================
-//  UPGRADE GRID (Smaller Boxes on Mobile)
+//  UPGRADE GRID (Unchanged)
 // ============================================================
 function UpgradeSection() {
   const levels = [
@@ -215,7 +267,7 @@ function UpgradeSection() {
 }
 
 // ============================================================
-//  RESULTS & TESTIMONIALS (Tighter Spacing)
+//  RESULTS & TESTIMONIALS (Unchanged)
 // ============================================================
 function ResultsTestimonials() {
   const items = [
