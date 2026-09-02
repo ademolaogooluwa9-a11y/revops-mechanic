@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { name, email, phone, website, businessType, questions } = body;
 
-    // Validate required fields
+    // Validate
     if (!name || !email || !phone || !website || !businessType) {
       return NextResponse.json(
         { error: "All required fields must be filled" },
@@ -14,7 +14,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Insert into Supabase
+    console.log("Inserting into Supabase:", { name, email, phone, website, businessType });
+
     const { data, error } = await supabase
       .from("audit_requests")
       .insert([
@@ -29,19 +30,20 @@ export async function POST(request: NextRequest) {
       ]);
 
     if (error) {
-      console.error("Supabase error:", error);
+      console.error("Supabase insert error:", error);
       return NextResponse.json(
-        { error: "Failed to save your request" },
+        { error: error.message || "Failed to save your request" },
         { status: 500 }
       );
     }
 
+    console.log("Insert successful:", data);
     return NextResponse.json(
       { message: "Audit request submitted successfully", data },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error submitting audit request:", error);
+    console.error("Unhandled error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
