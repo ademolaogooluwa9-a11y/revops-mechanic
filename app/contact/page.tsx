@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -62,36 +61,8 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
-      
-      {/* ===== NAVBAR ===== */}
-      <nav className="py-4 px-4 bg-gray-950 border-b border-gray-800/50 sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-1">
-            <span className="text-xl md:text-2xl font-extrabold text-orange-500 tracking-tight">RevOps</span>
-            <span className="text-xl md:text-2xl font-extrabold text-white tracking-tight">Mechanic</span>
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm text-gray-300 hover:text-white transition font-medium">Home</Link>
-            <Link href="/about" className="text-sm text-gray-300 hover:text-white transition font-medium">About</Link>
-            <Link href="/contact" className="text-sm text-orange-400 hover:text-orange-300 transition font-medium">Contact</Link>
-            <Link
-              href="/contact"
-              className="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 rounded-lg font-semibold text-sm transition shadow-lg shadow-orange-500/30"
-            >
-              Free Audit
-            </Link>
-          </div>
-          <div className="md:hidden">
-            <button className="text-gray-400 hover:text-white">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </nav>
 
-      {/* ===== FORM SECTION ===== */}
+      {/* ===== FORM SECTION (NO NAVBAR — ALREADY IN LAYOUT) ===== */}
       <section className="py-12 px-4 md:px-8 bg-white max-w-full">
         <div className="max-w-2xl mx-auto w-full">
 
@@ -234,7 +205,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ===== SUCCESS TOAST (bottom, not full page) ===== */}
+      {/* ===== SUCCESS TOAST ===== */}
       {showSuccess && (
         <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-50 border border-green-200 rounded-xl p-4 md:p-5 shadow-lg z-50 max-w-md w-full mx-4 animate-fade-in-up">
           <div className="flex items-center gap-3">
