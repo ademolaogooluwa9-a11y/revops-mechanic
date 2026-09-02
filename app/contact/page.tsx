@@ -10,7 +10,7 @@ export default function ContactPage() {
     phone: "",
     website: "",
     businessType: "",
-    questions: "", // ← NEW FIELD
+    questions: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -48,7 +48,8 @@ export default function ContactPage() {
           questions: "",
         });
       } else {
-        setSubmitError("Something went wrong. Please try again.");
+        const errorData = await response.json();
+        setSubmitError(errorData.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
       setSubmitError("Something went wrong. Please try again.");
@@ -59,8 +60,6 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-white">
-
-      {/* ===== HERO ===== */}
       <section className="py-12 px-4 text-center bg-gradient-to-b from-gray-50 to-white border-b border-gray-200">
         <div className="max-w-3xl mx-auto">
           <div className="text-4xl mb-3">🔧</div>
@@ -73,10 +72,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ===== FORM ===== */}
       <section className="py-12 px-4 md:px-8 bg-white">
         <div className="max-w-2xl mx-auto">
-
           {isSubmitted ? (
             <div className="bg-green-50 border border-green-200 rounded-xl p-6 md:p-8 text-center">
               <div className="text-4xl mb-3">✅</div>
@@ -183,7 +180,6 @@ export default function ContactPage() {
                 </select>
               </div>
 
-              {/* ===== NEW FIELD: Your Questions ===== */}
               <div>
                 <label htmlFor="questions" className="block text-sm font-medium text-gray-700 mb-1">
                   Your Questions (optional)
@@ -219,10 +215,8 @@ export default function ContactPage() {
               </p>
             </form>
           )}
-
         </div>
       </section>
-
     </main>
   );
 }
